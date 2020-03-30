@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V16</title>
+	<title>Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -25,7 +25,30 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<script src ="js/index.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+	     https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-analytics.js"></script>
+
+	<script>
+	  // Your web app's Firebase configuration
+	  var firebaseConfig = {
+	    apiKey: "AIzaSyCvBERMdzRZe-mJKO3Qch2fsqX_ea-2EKM",
+	    authDomain: "savemy-spot.firebaseapp.com",
+	    databaseURL: "https://savemy-spot.firebaseio.com",
+	    projectId: "savemy-spot",
+	    storageBucket: "savemy-spot.appspot.com",
+	    messagingSenderId: "992890459850",
+	    appId: "1:992890459850:web:8ee35a0e8cb7c728718633",
+	    measurementId: "G-43CWYBLZS6"
+	  };
+	  // Initialize Firebase
+	  firebase.initializeApp(firebaseConfig);
+	  firebase.analytics();
+	</script>
+	<script src ="js/firebase.js"></script>
+	<!-- <script src ="js/index.js"></script> -->
 <!--===============================================================================================-->
 </head>
 <body>
@@ -38,6 +61,11 @@
 				</span>
 				<form class="login100-form validate-form p-b-33 p-t-5">
 
+					<!-- <div class="wrap-input100 validate-input" data-validate = "Enter Username">
+						<input class="input100" id="username" type="text" name="username" placeholder="username">
+						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+					</div> -->
+
 					<div class="wrap-input100 validate-input" data-validate = "Enter email">
 						<input class="input100" id="email" type="text" name="email" placeholder="email">
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
@@ -48,8 +76,13 @@
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 					</div>
 
+					<!-- <div class="wrap-input100 validate-input" data-validate="Repeat password">
+						<input class="input100" id="repeat_password" type="password" name="pass_2" placeholder="Repeat Password">
+						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
+					</div> -->
+
 					<div class="container-login100-form-btn m-t-32">
-						<button id="Login" class="login100-form-btn">
+						<button  id="login" class="login100-form-btn">
 							Login
 						</button>
 					</div>
@@ -62,9 +95,6 @@
 
 	<div id="dropDownSelect1"></div>
 
-	<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
-
-	<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-analytics.js"></script>
 
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
