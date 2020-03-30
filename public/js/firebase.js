@@ -1,5 +1,11 @@
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
 
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-analytics.js"></script>
 
+<script>
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyCvBERMdzRZe-mJKO3Qch2fsqX_ea-2EKM",
@@ -14,19 +20,4 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
-
-
-//Get elements
-const useremail = document.getElementById('email');
-const userpassword = document.getElementById('password');
-const btnlogin = document.getElementById('Login');
-
-btnlogin.addEventListener('click',e => {
-  const email = useremail.value;
-  const pass  = userpassword.value;
-  const auth = firebase.auth();
-
-  //Sign in
-  const promise  = auth.signInWithEmailAndPassword(email,pass);
-  promise.catch(e => console.log(e.message));
-})
+</script>

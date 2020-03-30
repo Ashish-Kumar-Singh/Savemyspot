@@ -6,23 +6,13 @@
 [ FONT ]*/
 
 @font-face {
-  font-family: Poppins-Regular;
-  src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+  font-family: Ubuntu-Regular;
+  src: url('../fonts/ubuntu/Ubuntu-Regular.ttf'); 
 }
 
 @font-face {
-  font-family: Poppins-Medium;
-  src: url('../fonts/poppins/Poppins-Medium.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-Bold;
-  src: url('../fonts/poppins/Poppins-Bold.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-SemiBold;
-  src: url('../fonts/poppins/Poppins-SemiBold.ttf'); 
+  font-family: Ubuntu-Bold;
+  src: url('../fonts/ubuntu/Ubuntu-Bold.ttf'); 
 }
 
 
@@ -39,12 +29,12 @@
 
 body, html {
 	height: 100%;
-	font-family: Poppins-Regular, sans-serif;
+	font-family: Ubuntu-Regular, sans-serif;
 }
 
 /*---------------------------------------------*/
 a {
-	font-family: Poppins-Regular;
+	font-family: Ubuntu-Regular;
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
@@ -70,7 +60,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 p {
-	font-family: Poppins-Regular;
+	font-family: Ubuntu-Regular;
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
@@ -108,15 +98,15 @@ textarea:focus:-moz-placeholder { color:transparent; }
 textarea:focus::-moz-placeholder { color:transparent; }
 textarea:focus:-ms-input-placeholder { color:transparent; }
 
-input::-webkit-input-placeholder { color: #fff;}
-input:-moz-placeholder { color: #fff;}
-input::-moz-placeholder { color: #fff;}
-input:-ms-input-placeholder { color: #fff;}
+input::-webkit-input-placeholder { color: #555555;}
+input:-moz-placeholder { color: #555555;}
+input::-moz-placeholder { color: #555555;}
+input:-ms-input-placeholder { color: #555555;}
 
-textarea::-webkit-input-placeholder { color: #fff;}
-textarea:-moz-placeholder { color: #fff;}
-textarea::-moz-placeholder { color: #fff;}
-textarea:-ms-input-placeholder { color: #fff;}
+textarea::-webkit-input-placeholder { color: #555555;}
+textarea:-moz-placeholder { color: #555555;}
+textarea::-moz-placeholder { color: #555555;}
+textarea:-ms-input-placeholder { color: #555555;}
 
 label {
   margin: 0;
@@ -186,20 +176,15 @@ iframe {
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(255,255,255,0.9);
+  background-color: rgba(0,0,0,0.65);
 }
 
 .wrap-login100 {
-  width: 500px;
+  width: 390px;
   border-radius: 10px;
   overflow: hidden;
-  padding: 55px 55px 37px 55px;
 
-  background: #9152f8;
-  background: -webkit-linear-gradient(top, #7579ff, #b224ef);
-  background: -o-linear-gradient(top, #7579ff, #b224ef);
-  background: -moz-linear-gradient(top, #7579ff, #b224ef);
-  background: linear-gradient(top, #7579ff, #b224ef);
+  background: transparent;
 }
 
 
@@ -208,6 +193,8 @@ iframe {
 
 .login100-form {
   width: 100%;
+  border-radius: 10px;
+  background-color: #fff;
 }
 
 .login100-form-logo {
@@ -229,8 +216,8 @@ iframe {
 }
 
 .login100-form-title {
-  font-family: Poppins-Medium;
-  font-size: 30px;
+  font-family: Ubuntu-Bold;
+  font-size: 28px;
   color: #fff;
   line-height: 1.2;
   text-align: center;
@@ -246,21 +233,25 @@ iframe {
 .wrap-input100 {
   width: 100%;
   position: relative;
-  border-bottom: 2px solid rgba(255,255,255,0.24);
-  margin-bottom: 30px;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 29px 0;
 }
 
 .input100 {
-  font-family: Poppins-Regular;
-  font-size: 16px;
-  color: #fff;
+  font-family: Ubuntu-Regular;
+  font-size: 20px;
+  color: #555555;
   line-height: 1.2;
 
   display: block;
   width: 100%;
-  height: 45px;
+  height: 50px;
   background: transparent;
-  padding: 0 5px 0 38px;
+  padding: 0 10px 0 80px;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
 }
 
 /*---------------------------------------------*/ 
@@ -278,31 +269,35 @@ iframe {
   content: "";
   display: block;
   position: absolute;
-  bottom: -2px;
+  bottom: -1px;
   left: 0;
   width: 0;
-  height: 2px;
+  height: 1px;
 
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
   transition: all 0.4s;
 
-  background: #fff;
+  background: #d41872;
+  background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+  background: -o-linear-gradient(left, #a445b2, #d41872, #fa4299);
+  background: -moz-linear-gradient(left, #a445b2, #d41872, #fa4299);
+  background: linear-gradient(left, #a445b2, #d41872, #fa4299);
 }
 
 .focus-input100::after {
-  font-family: Material-Design-Iconic-Font;
-  font-size: 22px;
-  color: #fff;
+  font-family: Linearicons-Free;
+  font-size: 18px;
+  color: #999999;
 
   content: attr(data-placeholder);
   display: block;
   width: 100%;
   position: absolute;
-  top: 6px;
-  left: 0px;
-  padding-left: 5px;
+  top: 40px;
+  left: 35px;
+ 
 
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
@@ -311,12 +306,12 @@ iframe {
 }
 
 .input100:focus {
-  padding-left: 5px;
+  padding-left: 60px;
 }
 
 .input100:focus + .focus-input100::after {
-  top: -22px;
-  font-size: 18px;
+  left: 23px;
+  color: #d41872;
 }
 
 .input100:focus + .focus-input100::before {
@@ -324,8 +319,8 @@ iframe {
 }
 
 .has-val.input100 + .focus-input100::after {
-  top: -22px;
-  font-size: 18px;
+  left: 23px;
+  color: #d41872;
 }
 
 .has-val.input100 + .focus-input100::before {
@@ -333,64 +328,7 @@ iframe {
 }
 
 .has-val.input100 {
-  padding-left: 5px;
-}
-
-
-/*==================================================================
-[ Restyle Checkbox ]*/
-
-.contact100-form-checkbox {
-  padding-left: 5px;
-  padding-top: 5px;
-  padding-bottom: 35px;
-}
-
-.input-checkbox100 {
-  display: none;
-}
-
-.label-checkbox100 {
-  font-family: Poppins-Regular;
-  font-size: 13px;
-  color: #fff;
-  line-height: 1.2;
-
-  display: block;
-  position: relative;
-  padding-left: 26px;
-  cursor: pointer;
-}
-
-.label-checkbox100::before {
-  content: "\f26b";
-  font-family: Material-Design-Iconic-Font;
-  font-size: 13px;
-  color: transparent;
-
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  border-radius: 2px;
-  background: #fff;
-  left: 0;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
-.input-checkbox100:checked + .label-checkbox100::before {
-  color: #555555;
+  padding-left: 60px;
 }
 
 
@@ -408,10 +346,11 @@ iframe {
 }
 
 .login100-form-btn {
-  font-family: Poppins-Medium;
-  font-size: 16px;
-  color: #555555;
+  font-family: Ubuntu-Bold;
+  font-size: 18px;
+  color: #fff;
   line-height: 1.2;
+  text-transform: uppercase;
 
   display: -webkit-box;
   display: -webkit-flex;
@@ -421,15 +360,15 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 0 20px;
-  min-width: 120px;
-  height: 50px;
-  border-radius: 25px;
+  min-width: 160px;
+  height: 42px;
+  border-radius: 21px;
 
-  background: #9152f8;
-  background: -webkit-linear-gradient(bottom, #7579ff, #b224ef);
-  background: -o-linear-gradient(bottom, #7579ff, #b224ef);
-  background: -moz-linear-gradient(bottom, #7579ff, #b224ef);
-  background: linear-gradient(bottom, #7579ff, #b224ef);
+  background: #d41872;
+  background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+  background: -o-linear-gradient(left, #a445b2, #d41872, #fa4299);
+  background: -moz-linear-gradient(left, #a445b2, #d41872, #fa4299);
+  background: linear-gradient(left, #a445b2, #d41872, #fa4299);
   position: relative;
   z-index: 1;
 
@@ -446,11 +385,11 @@ iframe {
   z-index: -1;
   width: 100%;
   height: 100%;
-  border-radius: 25px;
-  background-color: #fff;
+  border-radius: 21px;
+  background-color: #555555;
   top: 0;
   left: 0;
-  opacity: 1;
+  opacity: 0;
 
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
@@ -459,21 +398,11 @@ iframe {
 }
 
 .login100-form-btn:hover {
-  color: #fff;
+  background-color: transparent;
 }
 
 .login100-form-btn:hover:before {
-  opacity: 0;
-}
-
-
-/*------------------------------------------------------------------
-[ Responsive ]*/
-
-@media (max-width: 576px) {
-  .wrap-login100 {
-    padding: 55px 15px 37px 15px;
-  }
+  opacity: 1;
 }
 
 
@@ -499,10 +428,10 @@ iframe {
   -ms-transform: translateY(-50%);
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
-  right: 0px;
+  right: 10px;
   pointer-events: none;
 
-  font-family: Poppins-Regular;
+  font-family: Ubuntu-Bold;
   color: #c80000;
   font-size: 13px;
   line-height: 1.4;
@@ -531,7 +460,7 @@ iframe {
   -ms-transform: translateY(-50%);
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
-  right: 5px;
+  right: 15px;
 }
 
 .alert-validate:hover:before {
