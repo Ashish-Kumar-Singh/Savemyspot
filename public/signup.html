@@ -41,7 +41,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter email: ex@abc.xyz">
-						<input class="input100" id="signup-email" required type="text" name="email" placeholder="Email">
+						<input class="input100" id="signup-email" required type="email" name="email" placeholder="Email">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -49,23 +49,24 @@
 						<span class="btn-show-pass">
 							<i class="fa fa fa-eye"></i>
 						</span>
-						<input class="input100" id="signup-password-1" required type="password" name="password_1" placeholder="Password">
+						<input class="input100" id="signup-password-1" required type="password" name="password_1" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
 						<span class="focus-input100"></span>
                     </div>
                     
-                    <!-- <div class="wrap-input100 validate-input m-b-20" data-validate = "Please Re-enter password">
+                    <div class="wrap-input100 validate-input m-b-20" data-validate = "Please Re-enter password">
 						<span class="btn-show-pass">
 							<i class="fa fa fa-eye"></i>
 						</span>
-						<input class="input100" id="signup-password-2" type="password" name="password_2" placeholder="Repeat Password">
+						<input class="input100" id="signup-password-2" required type="password" name="password_2"  placeholder="Repeat Password">
 						<span class="focus-input100"></span>
-					</div> -->
+					</div>
 
 					<div class="container-login100-form-btn">
 						<button  class="login100-form-btn">
 							Regsiter
 						</button>
 					</div>
+					
 					
 					<div class="flex-col-c p-t-224">
 						
@@ -75,6 +76,7 @@
 					</div>
 					
 				</form>
+				
 			</div>
 		</div>
 	</div>
