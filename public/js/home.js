@@ -1,3 +1,4 @@
+
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
     if (user) {
@@ -5,10 +6,21 @@ auth.onAuthStateChanged(user => {
     } else {
         window.location = 'index.html';
     }
-  })
+  });
+
 
 
 // logout
 function logout(){
-    auth.signOut();
+    try{
+        auth.signOut().then(function() {
+            // Sign-out successful.
+          }).catch(function(error) {
+            // An error happened.
+          });
+    }
+    catch(err){
+      console.log(err);
+    }
+    
 }

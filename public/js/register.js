@@ -7,18 +7,28 @@ auth.onAuthStateChanged(user => {
     }
   });
 
-const signupForm = document.querySelector('#signup-form');
+  try{
+    const signupForm = document.querySelector('#signup-form');
 signupForm.addEventListener('submit', (e) => {
   e.preventDefault();
   
   // get user info
   const email = signupForm['signup-email'].value;
   const password = signupForm['signup-password-1'].value;
+try{
+    // sign up the user
+    auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      console.log(error.Message);
+    });
+}
+catch(err){
+  console.log(err);
+}
 
-  // sign up the user
-  auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    console.log(error.Message);
-  });
 });
+  }
+  catch(err){
+    console.log(err);
+  }
