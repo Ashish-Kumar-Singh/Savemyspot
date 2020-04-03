@@ -41,23 +41,32 @@ signupForm.addEventListener('submit', (e) => {
   const email = signupForm['signup-email'].value;
   const password_1 = signupForm['signup-password-1'].value;
   const password_2 = signupForm['signup-password-2'].value;
-  if(password_1 == password_2){
-    try{
-      // sign up the user
-      auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        console.log(error.Message);
-      });
-  }
-  catch(err){
-    console.log(err);
-    document.getElementById("result").innerHTML = "Unable to register"
-  }
+  strength = checkBreachedPassword();
+  if(strength){
+    if(password_1 == password_2){
+      password=password_1
+      try{
+        
+        // sign up the user
+        auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          console.log(error.Message);
+        });
+    }
+    catch(err){
+      console.log(err);
+      document.getElementById("result").innerHTML = "Unable to register"
+    }
+    }
+    else{
+      document.getElementById("result").innerHTML = "Passwords do not match"
+    }
   }
   else{
-    document.getElementById("result").innerHTML = "Passwords do not match"
+    document.getElementById("result").innerHTML = "Please choose a stronger password"
   }
+
 
 });
   }
