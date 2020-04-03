@@ -11,6 +11,35 @@ auth.onAuthStateChanged(user => {
   });
  
 
+  //Create Notes
+  const createForm = document.querySelector('#create-note');
+  createForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    var e = document.getElementById("option");
+    var module = e.options[e.selectedIndex].value ;
+    db.collection('notes').add({
+      title: createForm.title.value,
+      Module: module,
+      User : auth.currentUser.uid,
+      content: createForm.content.value
+    }).then(() => {
+      // close the create modal & reset form
+      createForm.reset();
+    }).catch(err => {
+      console.log(err.message);
+    });
+    db.collection('notes').doc(auth.currentUser.uid).collection('posts').add({
+      title: createForm.title.value,
+      Module: module,
+      User : auth.currentUser.uid,
+      content: createForm.content.value
+    }).then(() => {
+      // close the create modal & reset form
+      createForm.reset();
+    }).catch(err => {
+      console.log(err.message);
+    });
+  });
 
 // sList all notes
 const guideList = document.querySelector('.guides');

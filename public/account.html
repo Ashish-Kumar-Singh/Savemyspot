@@ -65,10 +65,47 @@
 	</nav>
 	<div class="container-contact100">
 		<div class="wrap-contact100">
-			
+			<form class="contact100-form  validate-form" id = "create-note">
+				<span class="contact100-form-title">
+					Create Notes
+				</span>
+
+				<div class="wrap-input100 validate-input" data-validate="Name is required">
+					<label class="label-input100" for="name">Title</label>
+					<input id="title" class="input100" required type="text" name="name" placeholder="Add your title">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100">
+					<div class="label-input100">Module</div>
+					<div>
+						<select class="js-select2" id="option" name="service">
+							<option value="Advance Secure Programming">Advanced Secure Programming</option>
+							<option value="Digital Forensics">Digital Forensics</option>
+							<option value="Penetration Testing">Penetration Testing</option>
+						</select>
+						<div class="dropDownSelect2"></div>
+					</div>
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate = "Message is required">
+					<label class="label-input100" for="message">Note</label>
+					<textarea id="content" class="input100" required name="message" placeholder="Type your message here..."></textarea>
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="container-contact100-form-btn">
+					<button class="contact100-form-btn">
+						Create
+					</button>
+				</div>
+
+			</form>
 
 			<div class="contact100-more flex-col-c-m">
-				<div class="container" style="margin-top: 40px;">
+                <div class="container" style="margin-top: 40px;">
+                    <h5 class="center-align">My Notes</h5>
 					<ul class="collapsible z-depth-0 guides" style="border: none;">
 						
 					</ul>
@@ -76,6 +113,7 @@
 			</div>
 		</div>
 	</div>
+
 
 
 

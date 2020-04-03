@@ -36,7 +36,6 @@ function setupGuides(data){
 }
 
 
-const accountDetails = document.querySelector('.account-details');
 
 
 
