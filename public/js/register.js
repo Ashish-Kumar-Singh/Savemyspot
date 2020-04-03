@@ -51,6 +51,7 @@ signupForm.addEventListener('submit', (e) => {
         auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
           // Handle Errors here.
           var errorCode = error.code;
+          document.getElementById("result").innerHTML = "Unable to register"
           console.log(error.Message);
         });
     }

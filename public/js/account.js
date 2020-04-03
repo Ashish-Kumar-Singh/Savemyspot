@@ -2,7 +2,7 @@
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
     if (user) {
-      db.collection('notes').onSnapshot(snapshot => {
+      db.collection('notes').doc(user.uid).collection('posts').onSnapshot(snapshot => {
         setupGuides(snapshot.docs);
       }, err => console.log(err.message));
     } else {
@@ -34,41 +34,6 @@ function setupGuides(data){
     guideList.innerHTML = '<h5 class="center-align">No Notes</h5>';
   }
 }
-
-
-const accountDetails = document.querySelector('.account-details');
-
-
-
-//Create Notes
-const createForm = document.querySelector('#create-note');
-createForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  var e = document.getElementById("option");
-  var module = e.options[e.selectedIndex].value ;
-  db.collection('notes').add({
-    title: createForm.title.value,
-    Module: module,
-    User : auth.currentUser.uid,
-    content: createForm.content.value
-  }).then(() => {
-    // close the create modal & reset form
-    createForm.reset();
-  }).catch(err => {
-    console.log(err.message);
-  });
-  db.collection('notes').doc(auth.currentUser.uid).collection('posts').add({
-    title: createForm.title.value,
-    Module: module,
-    User : auth.currentUser.uid,
-    content: createForm.content.value
-  }).then(() => {
-    // close the create modal & reset form
-    createForm.reset();
-  }).catch(err => {
-    console.log(err.message);
-  });
-});
 
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.collapsible');
