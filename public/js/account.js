@@ -2,6 +2,11 @@
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
     if (user) {
+        // db.collection("notes").doc(user.uid).collection('posts').get().then(function(querySnapshot){
+        //     querySnapshot.forEach(function(doc){
+        //         console.log(doc.id)
+        //     });
+        // });
       db.collection('notes').doc(user.uid).collection('posts').onSnapshot(snapshot => {
         setupGuides(snapshot.docs);
       }, err => console.log(err.message));
@@ -48,7 +53,6 @@ function setupGuides(data){
     let html = '';
     data.forEach(doc => {
       const post = doc.data();
-      console.log(post);
           const li = `
           <li>
             <div class="collapsible-header  grey lighten-4"> ${post.title} | ${post.Module}</div>
