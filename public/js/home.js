@@ -34,6 +34,7 @@ function setupGuides(data){
 }
 
 
+const accountDetails = document.querySelector('.account-details');
 
 
 
@@ -46,6 +47,7 @@ createForm.addEventListener('submit', (e) => {
   db.collection('notes').add({
     title: createForm.title.value,
     Module: module,
+    User : auth.currentUser.uid,
     content: createForm.content.value
   }).then(() => {
     // close the create modal & reset form
