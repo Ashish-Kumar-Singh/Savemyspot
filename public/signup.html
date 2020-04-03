@@ -4,6 +4,8 @@
 	<title>Login V7</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jshashes/1.0.7/hashes.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
@@ -49,7 +51,7 @@
 						<span class="btn-show-pass">
 							<i class="fa fa fa-eye"></i>
 						</span>
-						<input class="input100" id="signup-password-1" required type="password" name="password_1" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+						<input class="input100" id="signup-password-1" onkeyup="checkBreachedPassword()" required type="password" name="password_1" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
 						<span class="focus-input100"></span>
                     </div>
                     
@@ -66,7 +68,7 @@
 							Regsiter
 						</button>
 					</div>
-					
+					<p id="result"></p>
 					
 					<div class="flex-col-c p-t-224">
 						
