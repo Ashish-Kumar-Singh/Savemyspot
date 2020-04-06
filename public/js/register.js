@@ -1,7 +1,13 @@
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
     if (user) {
-        window.location = 'home.html';
+      user.sendEmailVerification().then(function() {
+        // Email sent.
+        document.getElementById("result").innerHTML = "Please check your email in order to verify"
+      }).catch(function(error) {
+        // An error happened.
+      });
+        
     } else {
         // window.location = 'index.html';
     }
@@ -50,6 +56,7 @@ signupForm.addEventListener('submit', (e) => {
         // sign up the user
         auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
           // Handle Errors here.
+
           var errorCode = error.code;
           document.getElementById("result").innerHTML = "Unable to register"
           console.log(error.Message);

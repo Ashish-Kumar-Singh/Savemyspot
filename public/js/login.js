@@ -1,9 +1,16 @@
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
+  ver = user.emailVerified;
     if (user) {
+      if(ver){
         window.location = 'home.html';
+      }
+      else{
+        document.getElementById("result").innerHTML = "Please verify your email";
+      }
     } else {
         // window.location = 'index.html';
+        document.getElementById("result").innerHTML = "Please verify your email";
     }
   });
 

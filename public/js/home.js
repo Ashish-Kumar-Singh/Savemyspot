@@ -3,7 +3,6 @@
 auth.onAuthStateChanged(user => {
     if (user) {
       var ver = user.emailVerified;
-      console.log(ver);
       db.collection('notes').onSnapshot(snapshot => {
         setupGuides(snapshot.docs);
       }, err => console.log(err.message));
