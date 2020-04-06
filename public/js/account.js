@@ -2,7 +2,7 @@
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
     if (user) {
-        // db.collection("notes").doc(user.uid).collection('posts').get().then(function(querySnapshot){
+        // db.collection("notes").where("User", "==", user.uid).get().then(function(querySnapshot){
         //     querySnapshot.forEach(function(doc){
         //         console.log(doc.id)
         //     });
@@ -44,11 +44,14 @@ function setupGuides(data){
   if (data.length) {
     let html = '';
     data.forEach(doc => {
+      const id = doc.id;
       const post = doc.data();
           const li = `
           <li>
             <div class="collapsible-header  grey lighten-4"> ${post.title} | ${post.Module}</div>
-            <div class="collapsible-body  white">${post.content}</div>
+            <div class="collapsible-body  white">${post.content}<button value =${id} onclick="del_post(this.value)" class="contact100-form-btn" id="delete_post">
+						Delete
+					</button>
           </li>
         `;
         html += li;
@@ -68,6 +71,27 @@ function delete_post(title,content){
     function(error) { 
     console.error("Error removing document: ", error); 
 });
+}
+// delete
+function del_post(id){
+  db.collection("notes").doc(id).get()
+  .then(doc => {
+      data = doc.data();
+      user_id = auth.currentUser.uid;
+      if(data.User == user_id){
+        db.collection('notes').doc(id).delete().then(function () { 
+          console.log("Document successfully deleted!"); 
+      }).catch(
+          function(error) { 
+          console.error("Error removing document: ", error); 
+      });
+      }
+      else{
+        console.log("problem Deleting");
+      }
+  });
+
+
 }
 
 document.addEventListener('DOMContentLoaded', function() {
