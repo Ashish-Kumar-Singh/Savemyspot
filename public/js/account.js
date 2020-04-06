@@ -7,7 +7,9 @@ auth.onAuthStateChanged(user => {
         //         console.log(doc.id)
         //     });
         // });
-      db.collection('notes').doc(user.uid).collection('posts').onSnapshot(snapshot => {
+      const eid = user.email;
+      document.getElementById("name").innerHTML = " My Notes -"+eid+"";
+      db.collection('notes').where("User", "==", user.uid).onSnapshot(snapshot => {
         setupGuides(snapshot.docs);
       }, err => console.log(err.message));
     } else {
@@ -33,17 +35,7 @@ auth.onAuthStateChanged(user => {
     }).catch(err => {
       console.log(err.message);
     });
-    db.collection('notes').doc(auth.currentUser.uid).collection('posts').add({
-      title: createForm.title.value,
-      Module: module,
-      User : auth.currentUser.uid,
-      content: createForm.content.value
-    }).then(() => {
-      // close the create modal & reset form
-      createForm.reset();
-    }).catch(err => {
-      console.log(err.message);
-    });
+
   });
 
 // sList all notes
@@ -66,6 +58,16 @@ function setupGuides(data){
   } else {
     guideList.innerHTML = '<h5 class="center-align">No Notes</h5>';
   }
+}
+function delete_post(title,content){
+  console.log("title");
+  db.collection('notes').where("User", "==", user.uid).where("title", "==" ,title)
+  .where("content", "==", content).delete().then(function () { 
+    console.log("Document successfully deleted!"); 
+}).catch(
+    function(error) { 
+    console.error("Error removing document: ", error); 
+});
 }
 
 document.addEventListener('DOMContentLoaded', function() {

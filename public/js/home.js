@@ -2,6 +2,8 @@
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
     if (user) {
+      var ver = user.emailVerified;
+      console.log(ver);
       db.collection('notes').onSnapshot(snapshot => {
         setupGuides(snapshot.docs);
       }, err => console.log(err.message));
@@ -19,7 +21,6 @@ function setupGuides(data){
     let html = '';
     data.forEach(doc => {
       const post = doc.data();
-      console.log(post);
           const li = `
           <li>
             <div class="collapsible-header  grey lighten-4"> ${post.title} | ${post.Module}</div>
@@ -56,17 +57,7 @@ createForm.addEventListener('submit', (e) => {
   }).catch(err => {
     console.log(err.message);
   });
-  db.collection('notes').doc(auth.currentUser.uid).collection('posts').add({
-    title: createForm.title.value,
-    Module: module,
-    User : auth.currentUser.uid,
-    content: createForm.content.value
-  }).then(() => {
-    // close the create modal & reset form
-    createForm.reset();
-  }).catch(err => {
-    console.log(err.message);
-  });
+
 });
 
 document.addEventListener('DOMContentLoaded', function() {
