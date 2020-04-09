@@ -2,7 +2,7 @@
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
   if (user) {
-    var eid = user.email;
+    var eid = user.displayName;
     document.getElementById("name").innerHTML = " My Notes -" + eid + "";
     db.collection('notes').where("User", "==", user.uid).onSnapshot(snapshot => {
       setupGuides(snapshot.docs);
@@ -21,6 +21,7 @@ createForm.addEventListener('submit', (e) => {
     title: createForm.title.value,
     Module: module,
     User: auth.currentUser.uid,
+    username:auth.currentUser.displayName,
     content: createForm.content.value
   }).then(() => {
     // close the create modal & reset form

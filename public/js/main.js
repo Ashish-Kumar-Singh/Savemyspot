@@ -8,7 +8,6 @@
 
     $('.validate-form').on('submit',function(){
         var check = true;
-
         for(var i=0; i<input.length; i++) {
             if(validate(input[i]) == false){
                 showValidate(input[i]);
@@ -50,7 +49,6 @@
 
         $(thisAlert).removeClass('alert-validate');
     }
-    
     /*==================================================================
     [ Show pass ]*/
     var showPass = 0;
@@ -67,7 +65,6 @@
             $(this).find('i').addClass('fa-eye');
             showPass = 0;
         }
-        
     });
 
 })(jQuery);

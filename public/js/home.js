@@ -3,6 +3,7 @@
 auth.onAuthStateChanged(user => {
   if (user) {
     var ver = user.emailVerified;
+    console.log(user.displayName);
     db.collection('notes').onSnapshot(snapshot => {
       setupGuides(snapshot.docs);
     }, err => console.log(err.message));
@@ -23,7 +24,7 @@ function setupGuides(data) {
       const li = `
           <li>
             <div class="collapsible-header  grey lighten-4"> ${post.title} | ${post.Module}</div>
-            <div class="collapsible-body  white">${post.content}</div>
+            <div class="collapsible-body  white">${post.content}<br>By:${post.username} </div>
           </li>
         `;
       html += li;
@@ -45,11 +46,14 @@ createForm.addEventListener('submit', (e) => {
   e.preventDefault();
   var e = document.getElementById("option");
   var module = e.options[e.selectedIndex].value;
+  var title = createForm.title.value;
+  var content = createForm.content.value;
   db.collection('notes').add({
-    title: createForm.title.value,
+    title: title,
     Module: module,
     User: auth.currentUser.uid,
-    content: createForm.content.value
+    username:auth.currentUser.displayName,
+    content: content
   }).then(() => {
     // close the create modal & reset form
     createForm.reset();
