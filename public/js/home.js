@@ -3,16 +3,42 @@
 auth.onAuthStateChanged(user => {
   if (user) {
     var ver = user.emailVerified;
-    console.log(user.displayName);
-    db.collection('notes').onSnapshot(snapshot => {
-      setupGuides(snapshot.docs);
-    }, err => console.log(err.message));
+    if (ver) {
+      console.log(user.displayName);
+      db.collection('notes').onSnapshot(snapshot => {
+        setupGuides(snapshot.docs);
+      }, err => console.log(err.message));
+      //Create Notes
+      const createForm = document.querySelector('#create-note');
+      createForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        var e = document.getElementById("option");
+        var module = e.options[e.selectedIndex].value;
+        var title = createForm.title.value;
+        var content = createForm.content.value;
+        db.collection('notes').add({
+          title: title,
+          Module: module,
+          User: auth.currentUser.uid,
+          username: auth.currentUser.email,
+          content: content
+        }).then(() => {
+          // close the create modal & reset form
+          createForm.reset();
+        }).catch(err => {
+          console.log(err.message);
+        });
+
+      });
+
+    }
+    else {
+      window.location = 'index.html';
+    }
   } else {
     window.location = 'index.html';
   }
 });
-
-
 
 // sList all notes
 const guideList = document.querySelector('.guides');
@@ -35,33 +61,6 @@ function setupGuides(data) {
     guideList.innerHTML = '<h5 class="center-align">No Notes</h5>';
   }
 }
-
-
-
-
-
-//Create Notes
-const createForm = document.querySelector('#create-note');
-createForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  var e = document.getElementById("option");
-  var module = e.options[e.selectedIndex].value;
-  var title = createForm.title.value;
-  var content = createForm.content.value;
-  db.collection('notes').add({
-    title: title,
-    Module: module,
-    User: auth.currentUser.uid,
-    username:auth.currentUser.displayName,
-    content: content
-  }).then(() => {
-    // close the create modal & reset form
-    createForm.reset();
-  }).catch(err => {
-    console.log(err.message);
-  });
-
-});
 
 document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.collapsible');

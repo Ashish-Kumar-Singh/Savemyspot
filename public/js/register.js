@@ -47,7 +47,6 @@ signupForm.addEventListener('submit', (e) => {
   var email = signupForm['signup-email'].value;
   var password_1 = signupForm['signup-password-1'].value;
   var password_2 = signupForm['signup-password-2'].value;
-  var username = signupForm['username'].value;
   strength = checkBreachedPassword();
   if(strength){
     if(password_1 == password_2){
@@ -55,12 +54,9 @@ signupForm.addEventListener('submit', (e) => {
       try{
         
         // sign up the user
-        auth.createUserWithEmailAndPassword(email, password).then(function(result) {
+        auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
           // Handle Errors here.
-          return result.user.updateProfile({
-            displayName:username
-          })
-        }).catch(function(error){
+
           var errorCode = error.code;
           document.getElementById("result").innerHTML = "Unable to register"
           console.log(error.Message);

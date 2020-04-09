@@ -2,35 +2,41 @@
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
   if (user) {
-    var eid = user.displayName;
-    document.getElementById("name").innerHTML = " My Notes -" + eid + "";
-    db.collection('notes').where("User", "==", user.uid).onSnapshot(snapshot => {
-      setupGuides(snapshot.docs);
-    }, err => console.log(err.message));
+    var ver = user.emailVerified;
+    var eid = user.email;
+    if (ver) {
+      document.getElementById("name").innerHTML = " My Notes -" + eid + "";
+      db.collection('notes').where("User", "==", user.uid).onSnapshot(snapshot => {
+        setupGuides(snapshot.docs);
+      }, err => console.log(err.message));
+      //Create Notes
+      const createForm = document.querySelector('#create-note');
+      createForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        var e = document.getElementById("option");
+        var module = e.options[e.selectedIndex].value;
+        db.collection('notes').add({
+          title: createForm.title.value,
+          Module: module,
+          User: auth.currentUser.uid,
+          username: auth.currentUser.email,
+          content: createForm.content.value
+        }).then(() => {
+          // close the create modal & reset form
+          createForm.reset();
+        }).catch(err => {
+          console.log(err.message);
+        });
+
+      });
+    } else {
+      window.location = 'index.html';
+    }
   } else {
     window.location = 'index.html';
   }
 });
-//Create Notes
-const createForm = document.querySelector('#create-note');
-createForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  var e = document.getElementById("option");
-  var module = e.options[e.selectedIndex].value;
-  db.collection('notes').add({
-    title: createForm.title.value,
-    Module: module,
-    User: auth.currentUser.uid,
-    username:auth.currentUser.displayName,
-    content: createForm.content.value
-  }).then(() => {
-    // close the create modal & reset form
-    createForm.reset();
-  }).catch(err => {
-    console.log(err.message);
-  });
 
-});
 
 // sList all notes
 const guideList = document.querySelector('.guides');
