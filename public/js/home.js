@@ -1,36 +1,46 @@
-
+"use strict";
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
   if (user) {
     var ver = user.emailVerified;
     if (ver) {
-      console.log(user.displayName);
       db.collection('notes').onSnapshot(snapshot => {
         setupGuides(snapshot.docs);
       }, err => console.log(err.message));
       //Create Notes
       const createForm = document.querySelector('#create-note');
-      createForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        var e = document.getElementById("option");
-        var module = e.options[e.selectedIndex].value;
-        var title = createForm.title.value;
-        var content = createForm.content.value;
-        db.collection('notes').add({
-          title: title,
-          Module: module,
-          User: auth.currentUser.uid,
-          username: auth.currentUser.email,
-          content: content
-        }).then(() => {
-          // close the create modal & reset form
-          createForm.reset();
-        }).catch(err => {
-          console.log(err.message);
+      try {
+        createForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          var e = document.getElementById("option");
+          var module = e.options[e.selectedIndex].value;
+          var title = createForm.title.value;
+          var content = createForm.content.value;
+          if (title != null && content != null) {
+            if (title.length < 5 || title.length > 500) {
+              document.getElementById("result").innerHTML = "Title length should be more than 5 characters";
+            }
+            else {
+              db.collection('notes').add({
+                title: title,
+                Module: module,
+                User: auth.currentUser.uid,
+                username: auth.currentUser.email,
+                content: content
+              }).then(() => {
+                // close the create modal & reset form
+                createForm.reset();
+              }).catch(err => {
+                console.log(err.message);
+              });
+            }
+          } else {
+            document.getElementById("result").innerHTML = "Please fill all the fields";
+          }
         });
-
-      });
-
+      } catch (err) {
+        document.getElementById("result").innerHTML = "Please fill all the fields";
+      }
     }
     else {
       window.location = 'index.html';
@@ -69,6 +79,9 @@ document.addEventListener('DOMContentLoaded', function () {
 // logout
 const logout = document.querySelector('#logout');
 logout.addEventListener('click', (e) => {
-  e.preventDefault();
-  auth.signOut();
+  try {
+    e.preventDefault();
+    auth.signOut();
+  }
+  catch (err) { }
 });
