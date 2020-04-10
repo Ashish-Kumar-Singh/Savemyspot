@@ -19,6 +19,7 @@ function checkBreachedPassword() {
   var queryURL = "https://api.pwnedpasswords.com/range/" + digestFive;
   var checkDigest = passwordDigest.substring(5, 41).toUpperCase();
   var result;
+  var strength;
 
   $.ajax({
     url: queryURL,
@@ -27,11 +28,9 @@ function checkBreachedPassword() {
     success: function (res) {
       if (res.search(checkDigest) > -1) {
         result = false;
-        strength = false;
         document.getElementById("result").innerHTML = "Choose a stronger password"
       } else {
         result = true;
-        strength = true;
         document.getElementById("result").innerHTML = ""
       }
     }
@@ -47,7 +46,7 @@ try {
     var email = signupForm['signup-email'].value;
     var password_1 = signupForm['signup-password-1'].value;
     var password_2 = signupForm['signup-password-2'].value;
-    strength = checkBreachedPassword();
+    var strength = checkBreachedPassword();
     if (strength) {
       if (password_1 == password_2) {
         password = password_1
